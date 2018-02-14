@@ -21,11 +21,9 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify({term: term}),
       success(response) {
-        console.log('hii')
         App.fill();
       },
-      failure(response) {
-        console.log('hi')
+      error(response) {
         App.fill();
       }
     });
