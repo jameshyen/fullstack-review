@@ -21,9 +21,11 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify({term: term}),
       success(response) {
+        alert(`Wow, aren't alerts so ann—GitHub user added: ${term}! He had ${JSON.parse(response).length} repos!`)
         App.fill();
       },
       error(response) {
+        alert(`Wow, you already added that person.`);
         App.fill();
       }
     });

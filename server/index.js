@@ -31,7 +31,7 @@ app.post('/repos', function (req, res) {
           }));
         }
         Promise.all(promises).then(function () {
-          res.status(201).end('User saved!');
+          res.status(201).end(JSON.stringify({length: repos.length}));
         });
       });
     } else {
