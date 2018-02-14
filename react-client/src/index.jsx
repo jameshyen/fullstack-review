@@ -10,32 +10,31 @@ class App extends React.Component {
     this.state = { 
       repos: [],
     }
-    this.fill();
+    this.search.bind(this);
+    this.fill.bind(this);
   }
 
   search (term) {
-    const App = this;
     $.ajax({
       method: 'POST',
       url: '/repos',
       contentType: 'application/json',
       data: JSON.stringify({term: term}),
       success(response) {
-        App.fill.call(App);
+        this.fill();
       },
       error(response) {
-        App.fill.call(App);
+        this.fill();
       }
     });
   }
 
   fill () {
-    const App = this;
     $.ajax({
       method: 'GET',
       url: '/repos',
       success(response) {
-        App.setState({
+        this.setState({
           repos: JSON.parse(response),
         });
       },
@@ -47,7 +46,7 @@ class App extends React.Component {
       <div>
         <h1>GitHub Fetcher</h1>
         <RepoList repos={this.state.repos} />
-        <Search onSearch={this.search.bind(this)} />
+        <Search onSearch={this.search} />
       </div>
     );
   }
