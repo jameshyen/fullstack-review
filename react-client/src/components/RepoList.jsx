@@ -5,11 +5,20 @@ const RepoList = ({ repos }) => (
   <div>
     <h4>Repo List Component</h4>
     There are {repos.length} repos.
-    <ol className="list-group">
-      {repos.map((repo, index) => {
-        return <Repo key={index} repo={repo} />;  
-      })}
-    </ol>
+    <table className="table">
+      <thead>
+        <tr>
+          <th>Stars</th>
+          <th>Repo</th>
+          <th>Owner</th>
+        </tr>
+      </thead>
+      <tbody>
+        {repos.map((repo, index) => {
+          return <Repo key={index} repo={repo} />;  
+        })}
+      </tbody>
+    </table>
   </div>
 );
 
