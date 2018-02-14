@@ -21,10 +21,12 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify({term: term}),
       success(response) {
-        App.fill();
+        console.log('yoyo');
+        console.log(App)
+        App.fill.call(App);
       },
       error(response) {
-        App.fill();
+        App.fill.call(App);
       }
     });
   }
