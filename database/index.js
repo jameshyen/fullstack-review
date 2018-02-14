@@ -18,7 +18,7 @@ let repoSchema = mongoose.Schema({
 let Repo = mongoose.model('Repo', repoSchema);
 
 let save = (newRepo) => {
-  (new Repo(newRepo)).save();
+  return (new Repo(newRepo)).save();
 }
 
 module.exports.Repo = Repo;

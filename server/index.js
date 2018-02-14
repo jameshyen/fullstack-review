@@ -14,8 +14,9 @@ app.post('/repos', function (req, res) {
   Repo.find({'owner.username': req.body.term}, function (error, repos) {
     if (repos.length === 0) {
       getReposByUsername(req.body.term, function (repos) {
+        const promises = [];
         for (repo of repos) {
-          save({
+          promises.push(save({
             id: repo.id,
             name: repo.name,
             url: repo.html_url,
@@ -27,9 +28,11 @@ app.post('/repos', function (req, res) {
             size: repo.size,
             stars: repo.stargazers_count,
             watchers: repo.watchers_count,
-          });
+          }));
         }
-        res.status(201).end('User saved!');
+        Promise.all(promises).then(function () {
+          res.status(201).end('User saved!');
+        });
       });
     } else {
       res.status(409).end('User has already been searched!')
@@ -47,7 +50,6 @@ app.get('/repos', function (req, res) {
       }
       return 0;
     });
-    console.log('repos:', repos);
     res.status(200).end(JSON.stringify(repos.slice(0, 26)));
   });
 });
@@ -55,5 +57,5 @@ app.get('/repos', function (req, res) {
 let port = 1128;
 
 app.listen(port, function() {
-  console.log(`listening on port ${port}`);
+  console.log(`Listening on port ${port}`);
 });
