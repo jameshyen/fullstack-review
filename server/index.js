@@ -1,19 +1,21 @@
 const express = require('express');
-const parser = require('body-parser');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const { Repo, save } = require('../database/index');
 const { getReposByUsername } = require('../helpers/github');
 
 let app = express();
-app.use(parser.json());
+app.use(morgan('tiny'));
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.post('/repos', function (req, res) {
-  Repo.find({owner: {username: req.body.term}}, function (error, repos) {
+  Repo.find({'owner.username': req.body.term}, function (error, repos) {
     if (repos.length === 0) {
       getReposByUsername(req.body.term, function (repos) {
         for (repo of repos) {
-          // May be able to just pass in repo...
+          // Mapping is slightly different so can't just paste in repo...
           save({
             id: repo.id,
             name: repo.name,
