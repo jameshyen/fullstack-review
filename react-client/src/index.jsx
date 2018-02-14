@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = { 
-      repos: []
+      repos: [],
     }
   }
 
@@ -22,6 +22,18 @@ class App extends React.Component {
         console.log(`Response: ${response}`);
       },
     });
+  }
+
+  fill () {
+    $.ajax({
+      method: 'POST',
+      url: '/repos',
+      contentType: 'application/json',
+      data: JSON.stringify({term: term}),
+      success(response) {
+        console.log(`Response: ${response}`);
+      },
+    });    
   }
 
   render () {

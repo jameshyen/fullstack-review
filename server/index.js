@@ -15,7 +15,6 @@ app.post('/repos', function (req, res) {
     if (repos.length === 0) {
       getReposByUsername(req.body.term, function (repos) {
         for (repo of repos) {
-          // Mapping is slightly different so can't just paste in repo...
           save({
             id: repo.id,
             name: repo.name,
@@ -33,15 +32,23 @@ app.post('/repos', function (req, res) {
       });
       res.status(201).end('User saved!');
     } else {
-      // What if we want to update that user...
       res.status(409).end('User has already been searched!')
     }
   });
 });
 
 app.get('/repos', function (req, res) {
-  console.log(req.body);
-  res.end();
+  Repo.find({}, function (error, repos) {
+    repos.sort(function (firstRepo, secondRepo) {
+      if (firstRepo.stars > secondRepo.stars) {
+        return - 1;
+      } else if (secondRepo.stars > firstRepo.stars) {
+        return 1;
+      }
+      return 0;
+    });
+  });
+  res.status(200).end(JSON.stringify(repos.slice(0, 26)));
 });
 
 let port = 1128;
