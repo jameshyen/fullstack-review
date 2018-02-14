@@ -13,13 +13,14 @@ app.post('/repos', function (req, res) {
     if (repos.length === 0) {
       getReposByUsername(req.body.term, function (repos) {
         for (repo of repos) {
+          // May be able to just pass in repo...
           save({
             id: repo.id,
             name: repo.name,
             url: repo.html_url,
             owner: {
               id: repo.owner.id,
-              username: repo.owner.username, // ...
+              username: repo.owner.login, // ...
               profile: repo.owner.avatar_url,
             },
             size: repo.size,
@@ -28,13 +29,12 @@ app.post('/repos', function (req, res) {
           });
         }
       });
+      res.status(201).end('User saved!');
     } else {
-      res.status(409).end('User has already been searched!') // What if we want to update that user...
+      // What if we want to update that user...
+      res.status(409).end('User has already been searched!')
     }
   });
-  console.log('in here');
-  console.log(req.body);
-  // res.end();
 });
 
 app.get('/repos', function (req, res) {
