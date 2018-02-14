@@ -29,8 +29,8 @@ app.post('/repos', function (req, res) {
             watchers: repo.watchers_count,
           });
         }
+        res.status(201).end('User saved!');
       });
-      res.status(201).end('User saved!');
     } else {
       res.status(409).end('User has already been searched!')
     }
@@ -47,6 +47,7 @@ app.get('/repos', function (req, res) {
       }
       return 0;
     });
+    console.log('repos:', repos);
     res.status(200).end(JSON.stringify(repos.slice(0, 26)));
   });
 });
