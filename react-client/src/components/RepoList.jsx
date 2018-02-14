@@ -5,7 +5,7 @@ const RepoList = ({ repos }) => (
   <div>
     <h4>Repo List Component</h4>
     There are {repos.length} repos.
-    <ol>
+    <ol className="list-group">
       {repos.map((repo, index) => {
         return <Repo key={index} repo={repo} />;  
       })}
