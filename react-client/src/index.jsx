@@ -14,14 +14,20 @@ class App extends React.Component {
   }
 
   search (term) {
+    const App = this;
     $.ajax({
       method: 'POST',
       url: '/repos',
       contentType: 'application/json',
       data: JSON.stringify({term: term}),
       success(response) {
-        console.log(`Response: ${response}`);
+        console.log('hii')
+        App.fill();
       },
+      failure(response) {
+        console.log('hi')
+        App.fill();
+      }
     });
   }
 
@@ -31,11 +37,9 @@ class App extends React.Component {
       method: 'GET',
       url: '/repos',
       success(response) {
-        console.log(`Response: ${response}`);
         App.setState({
           repos: JSON.parse(response),
         });
-        console.log(App.state.repos);
       },
     });    
   }
