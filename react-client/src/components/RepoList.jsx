@@ -5,11 +5,11 @@ const RepoList = ({ repos }) => (
   <div>
     <h4>Repo List Component</h4>
     There are {repos.length} repos.
-    <ul>
-      {repos.map((repo) => {
-        return <Repo repo={repo} />;  
+    <ol>
+      {repos.map((repo, index) => {
+        return <Repo key={index} repo={repo} />;  
       })}
-    </ul>
+    </ol>
   </div>
 );
 
