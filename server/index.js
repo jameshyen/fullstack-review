@@ -6,7 +6,7 @@ let app = express();
 // app.use(express.static(__dirname + '/../node_modules/angular'));
 
 // UNCOMMENT FOR REACT
-// app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(express.static(__dirname + '/../react-client/dist'));
 
 
 app.post('/repos', function (req, res) {
