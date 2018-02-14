@@ -1,7 +1,7 @@
 const request = require('request');
 const config = require('../config.js');
 
-let getReposByUsername = (username) => {
+let getReposByUsername = (username, callback) => {
   let options = {
     url: `https://api.github.com/users/${username}/repos`,
     headers: {
@@ -10,11 +10,8 @@ let getReposByUsername = (username) => {
     },
   };
   request(options, function (error, response, body) {
-    // Ok...
-    console.log(JSON.parse(body));
+    callback(JSON.parse(body));
   });
 }
 
 module.exports.getReposByUsername = getReposByUsername;
-
-getReposByUsername('jameshyen');
