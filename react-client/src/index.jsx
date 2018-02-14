@@ -13,11 +13,11 @@ class App extends React.Component {
   }
 
   search (term) {
-    console.log(term);
     $.ajax({
       method: 'POST',
       url: '/repos',
-      data: term,
+      // contentType: 'application/json',
+      data: {term: term},
       success() {
 
       },

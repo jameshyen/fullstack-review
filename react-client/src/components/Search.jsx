@@ -6,19 +6,16 @@ class Search extends React.Component {
     this.state = {
       term: ''
     }
-    console.log(this, props);
   }
 
   onChange (e) {
-    console.log(this);
     this.setState({
       term: e.target.value
     });
   }
 
   search() {
-    console.log(this);
-    // this.props.onSearch(this.state.term);
+    this.props.onSearch(this.state.term);
   }
 
   render() {
@@ -26,7 +23,7 @@ class Search extends React.Component {
       <div>
         <h4>Add more repos!</h4>
         Enter a GitHub username: <input value={this.state.terms} onChange={this.onChange.bind(this)} />       
-        <button onClick={this.search.bind(this)}> Add Repos </button>
+        <button onClick={this.search.bind(this)}>Add Repos</button>
       </div>
     );
   }
