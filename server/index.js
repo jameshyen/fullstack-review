@@ -31,7 +31,10 @@ app.post('/repos', function (req, res) {
           }));
         }
         Promise.all(promises).then(function () {
-          res.status(201).end(JSON.stringify({length: repos.length}));
+          const highStars = repos.reduce(function (accumulator, currentValue) {
+            return Math.max(accumulator, currentValue.stargazers_count);
+          }, 0);
+          res.status(201).end(JSON.stringify({length: repos.length, stars: highStars}));
         });
       });
     } else {

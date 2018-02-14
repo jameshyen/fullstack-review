@@ -21,7 +21,7 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify({term: term}),
       success(response) {
-        alert(`Wow, aren't alerts so ann—GitHub user added: ${term}! They had ${JSON.parse(response).length} repos!`)
+        alert(`Wow, aren't alerts so ann—GitHub user added: ${term}! They had ${JSON.parse(response).length} repos! Their highest amount of stars was ${JSON.parse(response).stars}!`)
         App.fill();
       },
       error(response) {
