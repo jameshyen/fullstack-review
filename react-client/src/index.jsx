@@ -21,8 +21,6 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify({term: term}),
       success(response) {
-        console.log('yoyo');
-        console.log(App)
         App.fill.call(App);
       },
       error(response) {
@@ -37,7 +35,6 @@ class App extends React.Component {
       method: 'GET',
       url: '/repos',
       success(response) {
-        console.log(JSON.parse(response)[0]);
         App.setState({
           repos: JSON.parse(response),
         });
