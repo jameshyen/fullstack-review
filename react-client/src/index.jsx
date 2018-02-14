@@ -5,7 +5,7 @@ import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
 
 class App extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = { 
       repos: []
@@ -13,11 +13,11 @@ class App extends React.Component {
   }
 
   search (term) {
+    console.log(term);
     $.ajax({
       method: 'POST',
       url: '/repos',
-      contentType: 'application/json',
-      data: JSON.stringify(term),
+      data: term,
       success() {
 
       },
@@ -25,11 +25,13 @@ class App extends React.Component {
   }
 
   render () {
-    return (<div>
-      <h1>GitHub Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
-      <Search onSearch={this.search.bind(this)}/>
-    </div>)
+    return (
+      <div>
+        <h1>GitHub Fetcher</h1>
+        <RepoList repos={this.state.repos} />
+        <Search onSearch={this.search.bind(this)} />
+      </div>
+    );
   }
 }
 

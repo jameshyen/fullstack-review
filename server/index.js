@@ -4,11 +4,12 @@ const { save } = require('../database/index');
 const { getReposByUsername } = require('../helpers/github');
 
 let app = express();
-app.use(parser.json());
+app.use(parser.text());
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.post('/repos', function (req, res) {
+  console.log('in here');
   console.log(req.body);
   res.end();
 });
