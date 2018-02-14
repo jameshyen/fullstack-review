@@ -47,8 +47,8 @@ app.get('/repos', function (req, res) {
       }
       return 0;
     });
+    res.status(200).end(JSON.stringify(repos.slice(0, 26)));
   });
-  res.status(200).end(JSON.stringify(repos.slice(0, 26)));
 });
 
 let port = 1128;
