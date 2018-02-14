@@ -50,7 +50,7 @@ app.get('/repos', function (req, res) {
       }
       return 0;
     });
-    res.status(200).end(JSON.stringify(repos.slice(0, 25)));
+    res.status(200).end(JSON.stringify(repos));
   });
 });
 
