@@ -16,10 +16,10 @@ class App extends React.Component {
     $.ajax({
       method: 'POST',
       url: '/repos',
-      // contentType: 'application/json',
-      data: {term: term},
-      success() {
-
+      contentType: 'application/json',
+      data: JSON.stringify({term: term}),
+      success(response) {
+        console.log(`Response: ${response}`);
       },
     });
   }

@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
 
-// Default values... ?
 let repoSchema = mongoose.Schema({
   id: Number,
   name: String,
-  url: String, // Web url
+  url: String,
   owner: {
     id: Number,
-    username: String, // wat...
-    profile: String, // the Gravatar picture
+    username: String,
+    profile: String,
   },
   size: Number,
   stars: Number,
@@ -22,4 +21,5 @@ let save = (newRepo) => {
   (new Repo(newRepo)).save();
 }
 
+module.exports.Repo = Repo;
 module.exports.save = save;
