@@ -16,6 +16,7 @@ app.post('/repos', function (req, res) {
       getReposByUsername(req.body.term, function (repos) {
         const promises = [];
         for (repo of repos) {
+          console.log(repo.name);
           promises.push(save({
             id: repo.id,
             name: repo.name,
