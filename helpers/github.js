@@ -10,10 +10,8 @@ let getReposByUsername = (username, callback, full = [], page = 1) => {
     },
   };
   request(options, function (error, response, body) {
-    console.log(body);
     const repos = JSON.parse(body);
     full = full.concat(repos);
-    console.log(repos.length);
     if (repos.length === 100) {
       getReposByUsername(username, callback, full, page + 1);
     } else {
