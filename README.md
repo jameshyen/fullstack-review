@@ -1,2 +1,2 @@
-#fullstack-review
-This is a project I completed as a student at [hackreactor](http://hackreactor.com). This project was worked on with a pair.
+# fullstack-review
+This was a solo review sprint completed at Hack Reactor. It involved creating a full-stack MERN app that uses GitHub's API to sort users’ repos by star count.
